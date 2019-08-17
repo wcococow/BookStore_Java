@@ -1,0 +1,17 @@
+1.build with gradle(block)
+download gradle zip
+unzip -d /opt/gradle gradle-5.5.1-bin.zip
+export PATH=$PATH:c:/gradle/gradle-5.5.1/bin or add path C:\Gradle\gradle-5.5.1\bin
+grade tasks
+gradle build  jar file
+echo "apply plugin: 'java'" >> build.gradle
+1.2.create a resource representation class
+1.3.create a resource controller
+1.4.make the app executable Jar
+1.5.https://spring.io/guides/gs/gradle/ gradle wrapper --gradle-version 2.13 ./gradlew run
+2.https://thoughts-on-java.org/hibernate-tips-map-bidirectional-many-many-association/ many to many relationship
+1.test models
+3.query many to many https://www.javaworld.com/article/3387643/java-persistence-with-jpa-and-hibernate-part-2-many-to-many-relationships.html
+4.rest api endpoint
+
+run it java -jar jpa-example-2-1.0-SNAPSHOT.jar
