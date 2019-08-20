@@ -45,9 +45,9 @@ public class AuthorController {
 	
 	@GetMapping(value="/authors/{id}")
 	public ResponseEntity<Author> getAuthorById(
-	@PathVariable(value = "authorId") int authorId) {
+	@PathVariable(value = "id") int id) {
 		
-		Author author = authorService.getById(authorId);
+		Author author = authorService.getById(id);
 		return ResponseEntity.ok().body(author);
 		
 	}
@@ -60,40 +60,27 @@ public class AuthorController {
 	}
 	
 	@PutMapping("authors/{id}")
-	public ResponseEntity<Author> updateAuthor(@PathVariable(value = "authorId") int authorId,
+	public ResponseEntity<Author> updateAuthor(@PathVariable(value = "id") int id,
 		@Valid @RequestBody Author author){
-		return ResponseEntity.ok(authorService.update(author,authorId));
+		return ResponseEntity.ok(authorService.update(author,id));
 	}
 	
 	
 	@DeleteMapping("/authors/{id}")
-	public Map<String,Boolean> deleteAuthor(
-		@PathVariable(value = "authorId") int authorId){
-		Author author = authorService.deleteById(authorId);
+	public Map<String,Boolean> deleteAuthor(@PathVariable(value = "id") int id){
+		Author author = authorService.deleteById(id);
 		Map<String,Boolean> response = new HashMap<>();
 		response.put("deleted",Boolean.TRUE);
 		return response;
 	}
 	
-	@GetMapping("/{id}/books")
-	public ResponseEntity<List<Publication>>getAuthorPublicationById(
-	@PathVariable(value = "authorId") int authorId){
+	@GetMapping("/authors/name/{name}")
+	public ResponseEntity<Author>  getAuthorByName(
+	@PathVariable(value = "name") String name){
 		
-		return ResponseEntity.ok(authorService.getPublicationsById(authorId));
+		return ResponseEntity.ok(authorService.findByName(name));
 	
 	}
-	
-	@GetMapping("/authors/search")
-	public List<Publication> search(@RequestParam(value = "authorId", required = true) int authorId,
-								@RequestParam(value = "catagory", required = false) String catagory,
-                                @RequestParam(value = "title", required = false) String title,
-                                @RequestParam(value = "year", required = false) int year,
-								@RequestParam(value = "type", required = false) String type,
-								@RequestParam(value = "hero", required = false) String hero,
-                                @RequestParam(value = "genre", required = false) String genre){
-												  
-								return authorService.search(authorId,catagory,title,year,type,hero,genre); 				  
-												  
-	
-								}
 }
+	
+	

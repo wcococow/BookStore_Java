@@ -6,35 +6,51 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
-
+import com.fasterxml.jackson.annotation.*;
 
 
 
 @Entity
-@Table(name = "publications")
+@Table(name = "publication")
 public class Publication {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@JoinTable(name = "publication_author",
-				joinColumns = @JoinColumn(name="publication_id",referencedColumnName="id"),
-				inverseJoinColumns = @JoinColumn(name="author_id",referencedColumnName="id")
-				)
+	public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+		
+    }
+	@ManyToMany(mappedBy = "publications",fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<Author> authors = new ArrayList<Author>();
 	
 	
-	public void setAuthor(List<Author> authors){
-		this.authors = authors;
+	public void setAuthor(Author author){
+		authors.add(author);
+		author.getPublication().add(this);
 	}
 	
+	@JsonBackReference
 	public List<Author> getAuthor(){
 		return authors;
 	}
 	
-
+	public Publication(int id,String catagory, String title, int year ,String type, String hero, String genre){
+		this.id = id;
+		this.title = title;
+		this.catagory = catagory;
+		this.year = year;
+		this.type = type;
+		this.hero = hero;
+		
+		this.genre = genre;
+	}
+	
+	public Publication(){
+	}
 	
 	@Column(name = "catagory")
 	private String catagory;

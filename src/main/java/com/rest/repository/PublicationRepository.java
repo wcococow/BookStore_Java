@@ -7,5 +7,5 @@ import com.rest.model.Publication;
 
 public interface PublicationRepository extends JpaRepository<Publication,Integer>,
 														JpaSpecificationExecutor {
-
+			
 }

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "authors")
+@Table(name = "author")
 public class Author {
 	
 	@Id
@@ -37,19 +37,30 @@ public class Author {
         this.emailId = emailId;
     }
 	
-	@ManyToMany(mappedBy = "authors",fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	public Author(int id, String name, String emailId){
+		this.id = id;
+		this.name = name;
+		this.emailId = emailId;
+	}
+	
+	public Author(){
+	}
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinTable(name = "author_publication",
+				joinColumns = @JoinColumn(name="author_id",referencedColumnName="id"),
+				inverseJoinColumns = @JoinColumn(name="publication_id",referencedColumnName="id")
+				)
 	private List<Publication> publications = new ArrayList<Publication>();
 	
 	public void setPublication(Publication publication){
-		this.publications.add(publication);
+		publications.add(publication);
+		publication.setAuthor(this);
 	}
 	
-
 	
 	public List<Publication> getPublication(){
 		return publications;
 	}
-	
 	
 	
 }
