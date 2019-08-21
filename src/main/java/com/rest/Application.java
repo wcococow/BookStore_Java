@@ -4,11 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import com.rest.repository.AuthorRepository;
 import java.util.stream.*;
 import com.rest.model.*;
 import com.rest.repository.*;
-import com.rest.service.*;
+
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner{
@@ -19,7 +22,7 @@ public class Application implements CommandLineRunner{
 	@Autowired
 	private PublicationRepository publicationRepository;
 	
-	private PublicationService publicationService; 
+
 	
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -27,6 +30,8 @@ public class Application implements CommandLineRunner{
 		
 		@Override
 		public void run(String... args) throws Exception {
+			
+			
 			// Cleanup the tables
 			authorRepository.deleteAllInBatch();
 			publicationRepository.deleteAllInBatch();
@@ -36,7 +41,7 @@ public class Application implements CommandLineRunner{
 			Author auth2 = new Author(2,"Bruce Lee","brucelee@gmail.com");
 			Author auth3 = new Author(3,"Mike Will","Mikew@gmail.com");
 			Author auth4 = new Author(4,"Kate Lee","wcococow@gmail.com");
-
+			Author auth5 = new Author(5,"Kate Lee","katelee@gmail.com");
 			
 			authorRepository.save(auth1);
 			authorRepository.save(auth2);
@@ -93,6 +98,14 @@ public class Application implements CommandLineRunner{
 			authorRepository.save(auth2);
 			authorRepository.save(auth3);
 			authorRepository.save(auth4);
+			
+			
+			List<Publication> pub = publicationRepository.findByAuthorsNameAndYear("Kate Lee",2019);
+			List<String> collect = pub.stream()
+			.map(Publication::getTitle)
+			.collect(Collectors.toList());
+			
+			collect.forEach(System.out::println);
 			
 		
 

@@ -66,6 +66,8 @@ public class PublicationController {
 	}
 	
 	
+	
+	
 	@DeleteMapping("/publications/{id}")
 	public Map<String,Boolean> deletePublication(@PathVariable(value = "id") int id){
 		Publication publication = publicationService.deleteById(id);
@@ -74,16 +76,36 @@ public class PublicationController {
 		return response;
 	}
 	
-	@GetMapping("/publications/search")
-	public List<Publication> search(@RequestParam(value = "id", required = true) int id,
+	
+	
+	@GetMapping("/publications/year/")
+	public List<Publication> findByAuthorsNameAndYear(@RequestParam(value = "name", required = true) String name,
+								@RequestParam(value = "year", required = true) Integer year){
+												  
+								return publicationService.findByAuthorsNameAndYear(name,year); 				  
+												  
+	
+								}
+								
+	@GetMapping("/publications/catagory/")
+	public List<Publication> findByAuthorsNameAndCatagory(@RequestParam(value = "name", required = true) String name,
+								@RequestParam(value = "catagory", required = true) String catagory){
+												  
+								return publicationService.findByAuthorsNameAndCatagory(name,catagory); 				  
+												  
+	
+								}
+
+   @GetMapping("/publications/search")
+   public List<Publication> search(@RequestParam(value = "name", required = true) String name,
 								@RequestParam(value = "catagory", required = false) String catagory,
                                 @RequestParam(value = "title", required = false) String title,
-                                @RequestParam(value = "year", required = false) int year,
+                                @RequestParam(value = "year", required = false) Integer year,
 								@RequestParam(value = "type", required = false) String type,
 								@RequestParam(value = "hero", required = false) String hero,
                                 @RequestParam(value = "genre", required = false) String genre){
 												  
-								return publicationService.search(id,catagory,title,year,type,hero,genre); 				  
+								return publicationService.search(name,catagory,title,year,type,hero,genre); 				  
 												  
 	
 								}

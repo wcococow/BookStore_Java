@@ -22,7 +22,6 @@ public class Publication {
     }
     public void setId(int id) {
         this.id = id;
-		
     }
 	@ManyToMany(mappedBy = "publications",fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<Author> authors = new ArrayList<Author>();

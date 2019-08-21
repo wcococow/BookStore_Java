@@ -52,6 +52,17 @@ public class AuthorController {
 		
 	}
 	
+	@GetMapping(value="/authors/name/{name}")
+	public List<Author> findByName(
+	@PathVariable(value = "name") String name) {
+		
+		List<Author> author = authorService.findByName(name);
+		return author;
+		
+	}
+	
+	
+	
 	@PostMapping("/authors")
 	public Author createAuthor(@Valid @RequestBody Author author){
 		return authorService.add(author);
@@ -74,13 +85,7 @@ public class AuthorController {
 		return response;
 	}
 	
-	@GetMapping("/authors/name/{name}")
-	public ResponseEntity<Author>  getAuthorByName(
-	@PathVariable(value = "name") String name){
-		
-		return ResponseEntity.ok(authorService.findByName(name));
 	
-	}
 }
 	
 	
