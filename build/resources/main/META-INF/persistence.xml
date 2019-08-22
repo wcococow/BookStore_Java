@@ -10,10 +10,10 @@
         <class>com.rest.model.Author</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url"    value="jdbc:mysql://remotemysql.com:3306/" />
+            <property name="javax.persistence.jdbc.url"    value="jdbc:mysql://remotemysql.com:3306/EDjMXjqSKY" />
             <property name="javax.persistence.jdbc.user" value="EDjMXjqSKY" />
             <property name="javax.persistence.jdbc.password" value="pYqtpOoE9G" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="show_sql" value="true"/>
             <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
