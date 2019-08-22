@@ -100,7 +100,7 @@ public class PublicationController {
    public List<Publication> search(@RequestParam(value = "name", required = true) String name,
 								@RequestParam(value = "catagory", required = false) String catagory,
                                 @RequestParam(value = "title", required = false) String title,
-                                @RequestParam(value = "year", required = false) Integer year,
+                                @RequestParam(value = "year", required = false) int year,
 								@RequestParam(value = "type", required = false) String type,
 								@RequestParam(value = "hero", required = false) String hero,
                                 @RequestParam(value = "genre", required = false) String genre){

@@ -136,7 +136,7 @@ public class PublicationService {
 		
 	}
 		
-	public List<Publication> search(String name,String catagory,String title,Integer year,String type,String hero,String genre)
+	public List<Publication> search(String name,String catagory,String title,int year,String type,String hero,String genre)
 	{
 		
 		
