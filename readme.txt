@@ -8,7 +8,7 @@ postAuthor http://localhost:8080/api/v1/authors
 getAuthorByName  http://localhost:8080/api/v1/authors/name/kate lee
 
 
-1.Publication 
+2.Publication 
 getAllPublication http://localhost:8080/api/v1/publications
 getPublicationbyId http://localhost:8080/api/v1/publications/1
 UpdatePublicationById http://localhost:8080/api/v1/publications/1
